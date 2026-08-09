@@ -1,0 +1,19 @@
+{
+  "name": "hospital-mis-privacy-focused",
+  "version": "1.0.0",
+  "description": "MIS for Hospital Management - Privacy Focused (React, Node.js/Express, MongoDB)",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "start:server": "cd server && node server.js",
+    "start:client": "cd client && npm run dev",
+    "build": "cd client && npm run build"
+  },
+  "keywords": [
+    "hospital-mis",
+    "privacy",
+    "rbac",
+    "college-project"
+  ],
+  "author": "",
+  "license": "ISC"
+}
