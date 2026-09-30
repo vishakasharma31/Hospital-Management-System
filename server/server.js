@@ -546,8 +546,20 @@ const startServer = async () => {
     // Seed database automatically
     await seedDatabase();
 
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`🚀 Hospital MIS Server listening on http://localhost:${PORT}`);
+    });
+
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        const altPort = Number(PORT) + 1;
+        console.log(`⚠️ Port ${PORT} in use, trying alternate port ${altPort}...`);
+        app.listen(altPort, () => {
+          console.log(`🚀 Hospital MIS Server listening on http://localhost:${altPort}`);
+        });
+      } else {
+        console.error('Server Listen Error:', err);
+      }
     });
   } catch (err) {
     console.error('Server Initialization Error:', err);
